@@ -1,0 +1,14 @@
+(?x) # comment mode
+(?(DEFINE)
+(?<xml> (?'tag')) #end of xml
+(?<tag> (?'enclosingtag') | (?'normaltag') ) #end of tag
+(?<normaltag>\<\s*(?'tagname')(?:\s+(?'attributes'))? \s* /\> ) #end of normaltag
+(?<tagname>[a-zA-Z]+) #end of tagname
+(?<attributes> (?:(?(attribut)\s+)(?'attribut'))+ ) # end attributes
+(?<attribut> (?'attributname')\s*=\s*"(?'attributvalue')") #end of attribute
+(?<attributname>[a-zA-Z]+) #end of attributname
+(?<attributvalue>[a-zA-Z]+) #end of attributvalue
+(?<enclosingtag>\<\s*(?'tagname')(?:\s+(?'attributes'))?\s*\> (?: (?'tag')|(?'text'))* \< / \k<tagname> \> ) #end of enclosing tag
+(?<text>[a-zA-Z\s]+)
+) # end of DEFINE
+\s*(?'xml')\s*

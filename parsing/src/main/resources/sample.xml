@@ -1,0 +1,6 @@
+<message pri="important" priority="high" amen="good">
+	<to receiver="Sonja" />
+	<br />
+	<from sender="Florian" pri="low" />
+	Hello
+</message>
